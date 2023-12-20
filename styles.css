@@ -21,9 +21,14 @@
 
 html,
 body {
+  scroll-behavior: smooth;
 	margin: 0;
 	padding: 0;
 	width: 100vw;
+}
+
+* {
+  box-sizibng: border-box;
 }
 
 body {
@@ -1197,7 +1202,7 @@ h2 {
 		linear-gradient(#000, #000);
 	color: white;
 	border: 1px solid #ccc;
-	height: 300px;
+	height: 370px;
 	padding: 40px;
 }
 
@@ -1219,7 +1224,7 @@ h2 {
 }
 .Pricing-middle-top {
 	grid-row: span 3 !important;
-	height: 725px;
+	height: 795px;
 	justify-content: center;
 	align-items: center;
 	text-align: center;
