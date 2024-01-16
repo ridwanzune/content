@@ -59,7 +59,13 @@
     </div>
 
     <script>
-        const pdfs = Array.from({ length: 19 }, (_, index) => `sample/${index + 1}.pdf`);
+        const excludedPDFs = [3, 10, 11, 16];
+        const pdfs = Array.from({ length: 19 }, (_, index) => {
+            if (!excludedPDFs.includes(index + 1)) {
+                return `sample/${index + 1}.pdf`;
+            }
+        }).filter(url => url); // Remove undefined values
+
         let currentIndex = 0;
 
         function renderPDF(url) {
