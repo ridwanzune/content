@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Webpage Viewer</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        #image-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow-y: auto; /* Enable vertical scrolling */
+        }
+
+        #image-viewer {
+            width: 100%;
+            display: block;
+            margin: auto;
+        }
+
+        #reset-button {
+            position: fixed;
+            bottom: 2vh;
+            right: 2vw;
+            width: 2cm;
+            height: auto; /* Auto height to maintain aspect ratio */
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        #reset-button:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div id="image-container">
+        <img id="image-viewer" src="1.png" alt="Image 1"> <!-- Updated image source -->
+    </div>
+
+    <img id="reset-button" src="buttons/2.png" alt="Reset Button" onclick="resetToImage1()">
+
+    <script>
+        const images = Array.from({ length: 12 }, (_, index) => `${index + 1}.png`); // Updated image sources
+        let currentIndex = 0;
+
+        function renderImage(src) {
+            document.getElementById('image-viewer').src = src;
+        }
+
+        function changeImage() {
+            currentIndex = (currentIndex + 1) % images.length;
+            renderImage(images[currentIndex]);
+        }
+
+        function resetToImage1() {
+            currentIndex = 0;
+            renderImage(images[currentIndex]);
+        }
+
+        function handleNextImage() {
+            changeImage();
+        }
+
+        document.addEventListener('click', handleNextImage);
+        document.addEventListener('keydown', (event) => {
+            // Check if the pressed key is not Enter or Space to avoid conflicts with form submissions
+            if (event.key !== 'Enter' && event.key !== ' ') {
+                handleNextImage();
+            }
+        });
+    </script>
+</body>
+</html>
