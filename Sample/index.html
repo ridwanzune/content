@@ -44,17 +44,40 @@
 </head>
 <body>
     <div id="image-container">
-        <img id="image-viewer" src="1.png" alt="Image 1"> <!-- Updated image source -->
+        <img id="image-viewer" src="1.png" alt="Image 1">
     </div>
 
     <img id="reset-button" src="buttons/2.png" alt="Reset Button" onclick="resetToImage1()">
 
     <script>
-        const images = Array.from({ length: 12 }, (_, index) => `${index + 1}.png`); // Updated image sources
+        const images = Array.from({ length: 12 }, (_, index) => `${index + 1}.png`);
         let currentIndex = 0;
+
+        function preloadImages() {
+            images.forEach((image) => {
+                const img = new Image();
+                img.onload = function () {
+                    // Image has finished loading
+                    console.log(`Image loaded: ${image}`);
+                };
+                img.src = image;
+            });
+        }
+
+        function preloadNextImage() {
+            const nextIndex = (currentIndex + 1) % images.length;
+            const nextImage = new Image();
+            nextImage.onload = function () {
+                // Next image has finished loading
+                console.log(`Next image loaded: ${images[nextIndex]}`);
+                document.getElementById('image-viewer').src = images[nextIndex];
+            };
+            nextImage.src = images[nextIndex];
+        }
 
         function renderImage(src) {
             document.getElementById('image-viewer').src = src;
+            preloadNextImage();
         }
 
         function changeImage() {
@@ -70,6 +93,8 @@
         function handleNextImage() {
             changeImage();
         }
+
+        preloadImages();
 
         document.addEventListener('click', handleNextImage);
         document.addEventListener('keydown', (event) => {
