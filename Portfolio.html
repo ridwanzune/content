@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PDF Webpage Viewer</title>
+    <title>Image Webpage Viewer</title>
     <style>
         body {
             margin: 0;
@@ -14,68 +14,70 @@
             height: 100vh;
         }
 
-        #pdf-container {
+        #image-container {
             position: relative;
             width: 100%;
             height: 100%;
+            overflow-y: auto; /* Enable vertical scrolling */
         }
 
-        #pdf-viewer {
+        #image-viewer {
             width: 100%;
-            height: 100%;
-        }
-
-        #switch-container {
-            position: fixed;
-            bottom: 2vh; /* Adjust as needed */
-            left: 50%;
-            transform: translateX(-50%);
-            padding: 10px;
-            background-color: rgba(51, 51, 51, 0.7); /* Transparent black overlay */
-            color: #fff;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
-
-        #switch-container:hover {
-            background-color: rgba(51, 51, 51, 0.9); /* Darker overlay on hover */
-        }
-
-        #switch-image {
-            width: 2cm;
-            height: 2cm;
             display: block;
             margin: auto;
+        }
+
+        #reset-button {
+            position: fixed;
+            bottom: 2vh;
+            right: 2vw;
+            width: 2cm; /* Updated width to 10cm */
+            height: auto; /* Auto height to maintain aspect ratio */
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        #reset-button:hover {
+            transform: scale(1.05);
         }
     </style>
 </head>
 <body>
-    <div id="pdf-container">
-        <iframe id="pdf-viewer" src="sample/1.pdf" width="100%" height="100%" frameborder="0"></iframe>
-        <div id="switch-container" onclick="changePDF()">
-            <img id="switch-image" src="buttons/1.png" alt="Switch Button">
-        </div>
+    <div id="image-container">
+        <img id="image-viewer" src="sample/1.png" alt="Image 1">
     </div>
 
-    <script>
-        const excludedPDFs = [3, 10, 11, 16];
-        const pdfs = Array.from({ length: 19 }, (_, index) => {
-            if (!excludedPDFs.includes(index + 1)) {
-                return `sample/${index + 1}.pdf`;
-            }
-        }).filter(url => url); // Remove undefined values
+    <img id="reset-button" src="buttons/2.png" alt="Reset Button" onclick="resetToImage1()">
 
+    <script>
+        const images = Array.from({ length: 12 }, (_, index) => `sample/${index + 1}.png`);
         let currentIndex = 0;
 
-        function renderPDF(url) {
-            document.getElementById('pdf-viewer').src = url;
+        function renderImage(src) {
+            document.getElementById('image-viewer').src = src;
         }
 
-        function changePDF() {
-            currentIndex = (currentIndex + 1) % pdfs.length;
-            renderPDF(pdfs[currentIndex]);
+        function changeImage() {
+            currentIndex = (currentIndex + 1) % images.length;
+            renderImage(images[currentIndex]);
         }
+
+        function resetToImage1() {
+            currentIndex = 0;
+            renderImage(images[currentIndex]);
+        }
+
+        function handleNextImage() {
+            changeImage();
+        }
+
+        document.addEventListener('click', handleNextImage);
+        document.addEventListener('keydown', (event) => {
+            // Check if the pressed key is not Enter or Space to avoid conflicts with form submissions
+            if (event.key !== 'Enter' && event.key !== ' ') {
+                handleNextImage();
+            }
+        });
     </script>
 </body>
 </html>
