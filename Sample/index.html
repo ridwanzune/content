@@ -6,6 +6,7 @@
     <title>Image Webpage Viewer</title>
     
     <link rel="manifest" href="/manifest.json">
+   
     <script>
       if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('/service-worker.js')
@@ -67,7 +68,7 @@
 </head>
 <body>
     <div id="image-container">
-        <img id="image-viewer" src="1.png" alt="Image 1">
+        <img id="image-viewer" src="1.png" alt="Image 1" loading="eager">
     </div>
 
     <img id="reset-button" src="buttons/2.png" alt="Reset Button" onclick="resetToImage1()">

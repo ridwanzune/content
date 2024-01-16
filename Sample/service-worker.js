@@ -1,62 +1,48 @@
-// service-worker.js
-
 const CACHE_NAME = 'image-viewer-cache-v2';
-const IMAGE_CACHE_NAME = 'image-cache-v1';
 const urlsToCache = [
   '/',
-  '/index.html',
-  '/buttons/2.png',
   '/manifest.json',
-  // Include other resources you want to cache
+  '/1.png',
+  '/2.png',
+  '/3.png',
+  '/4.png',
+  '/5.png',
+  '/6.png',
+  '/7.png',
+  '/8.png',
+  '/9.png',
+  '/10.png',
+  '/11.png',
+  '/12.png',
+  '/buttons/2.png',
+  '/main.js',
 ];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(urlsToCache))
+    caches.open(CACHE_NAME)
+      .then((cache) => cache.addAll(urlsToCache))
   );
 });
 
 self.addEventListener('activate', (event) => {
+  const cacheWhitelist = [CACHE_NAME];
+
   event.waitUntil(
-    caches.keys().then((cacheNames) => {
-      return Promise.all(
-        cacheNames.map((cacheName) => {
-          if (cacheName !== CACHE_NAME && cacheName.startsWith('image-cache-')) {
-            return caches.delete(cacheName);
-          }
-        })
-      );
-    })
+    caches.keys().then((cacheNames) => Promise.all(
+      cacheNames.map((name) => {
+        if (!cacheWhitelist.includes(name)) {
+          return caches.delete(name);
+        }
+        return null;
+      })
+    ))
   );
 });
 
 self.addEventListener('fetch', (event) => {
-  const { request } = event;
-  const requestURL = new URL(request.url);
-
-  // Cache images separately for better control
-  if (requestURL.pathname.endsWith('.png') || requestURL.pathname.endsWith('.jpg')) {
-    event.respondWith(handleImageRequest(request));
-  } else {
-    event.respondWith(
-      caches.match(request).then((response) => response || fetch(request))
-    );
-  }
+  event.respondWith(
+    caches.match(event.request)
+      .then((response) => response || fetch(event.request))
+  );
 });
-
-async function handleImageRequest(request) {
-  const cache = await caches.open(IMAGE_CACHE_NAME);
-  const cachedResponse = await cache.match(request);
-
-  if (cachedResponse) {
-    return cachedResponse;
-  }
-
-  const networkResponse = await fetch(request.clone());
-
-  if (networkResponse.ok) {
-    cache.put(request, networkResponse.clone());
-  }
-
-  return networkResponse;
-}
