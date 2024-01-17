@@ -7,17 +7,15 @@
     <link rel="manifest" href="/manifest.json">
     <link rel="icon" type="image/png" href="contentguy.png">
     <style>
-        body {
-    cursor: url('buttons/mouse.ico'), auto;
-    /* Existing styles */
-    margin: 0;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-}
-
+       body {
+            cursor: url('buttons/mouse.ico'), auto;
+            margin: 0;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
         body {
             margin: 0;
             overflow: hidden;
@@ -53,13 +51,13 @@
             margin: auto;
         }
 
-        #reset-button {
+            #reset-button {
             position: fixed;
             bottom: 2vh;
             right: 2vw;
             width: 2cm;
             height: auto;
-            cursor: pointer;
+            cursor: url('buttons/mouse2.ico'), auto; /* Set custom cursor for the button */
             transition: transform 0.3s ease;
         }
 
