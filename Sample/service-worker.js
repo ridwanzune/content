@@ -1,48 +1,54 @@
 const CACHE_NAME = 'image-viewer-cache-v2';
-const urlsToCache = [
-  '/',
-  '/manifest.json',
-  '/1.png',
-  '/2.png',
-  '/3.png',
-  '/4.png',
-  '/5.png',
-  '/6.png',
-  '/7.png',
-  '/8.png',
-  '/9.png',
-  '/10.png',
-  '/11.png',
-  '/12.png',
-  '/buttons/2.png',
-  '/main.js',
-];
 
 self.addEventListener('install', (event) => {
-  event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then((cache) => cache.addAll(urlsToCache))
-  );
+    event.waitUntil(
+        caches.open(CACHE_NAME)
+            .then((cache) => {
+                return cache.addAll([
+                    '/',
+                    '/index.html',
+                    // Add paths to webp images here
+                    '/1.webp',
+                    '/2.webp',
+                    '/3.webp',
+                    '/4.webp',
+                    '/5.webp',
+                    '/6.webp',
+                    '/7.webp',
+                    '/8.webp',
+                    '/9.webp',
+                    '/10.webp',
+                    '/11.webp',
+                    '/12.webp',
+                    // Add paths to other assets here if needed
+                    '/buttons/2.png',
+                    '/manifest.json',
+                    '/main.js',
+                ]);
+            })
+    );
 });
 
 self.addEventListener('activate', (event) => {
-  const cacheWhitelist = [CACHE_NAME];
-
-  event.waitUntil(
-    caches.keys().then((cacheNames) => Promise.all(
-      cacheNames.map((name) => {
-        if (!cacheWhitelist.includes(name)) {
-          return caches.delete(name);
-        }
-        return null;
-      })
-    ))
-  );
+    event.waitUntil(
+        caches.keys()
+            .then((cacheNames) => {
+                return Promise.all(
+                    cacheNames.map((name) => {
+                        if (name !== CACHE_NAME) {
+                            return caches.delete(name);
+                        }
+                    })
+                );
+            })
+    );
 });
 
 self.addEventListener('fetch', (event) => {
-  event.respondWith(
-    caches.match(event.request)
-      .then((response) => response || fetch(event.request))
-  );
+    event.respondWith(
+        caches.match(event.request)
+            .then((response) => {
+                return response || fetch(event.request);
+            })
+    );
 });
