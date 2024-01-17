@@ -22,6 +22,8 @@ self.addEventListener('install', (event) => {
                     '/12.webp',
                     // Add paths to other assets here if needed
                     '/buttons/2.png',
+                    '/1.gif',
+                    '/contentguy.png,
                     '/manifest.json',
                     '/main.js',
                 ]);
