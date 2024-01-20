@@ -163,6 +163,8 @@ h2 {
 .cta-button:hover {
 	transform: translateY(-5px);
 	box-shadow: 10px 10px #c2b2ab;
+    background-color: orange;
+    color: white;
 }
 
 .projects {
@@ -1785,4 +1787,17 @@ h2 {
 	background-color: white;
 	color: black;
 	border: 1px solid black;
+}
+
+
+.button-container button:hover {
+    background-color: orange;
+    color: white; /* Optional: Change text color on hover */
+}
+
+
+/* Add this to your stylesheet */
+#openModalButton4:hover {
+    background-color: orange;
+    color: white;
 }
