@@ -1,28 +1,51 @@
-// // script.js
-// document.addEventListener("DOMContentLoaded", function () {
-//   const logoContainer = document.getElementById("logoContainer");
-//   const logos = logoContainer.querySelectorAll('img');
+document.addEventListener("scroll", function () {
+	const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
+	const scrolledPercentage = (window.scrollY / scrollableHeight) * 100;
 
-//   let distance = 0;
-//   let speed = 1; // Adjust the speed as needed (higher values make it faster)
+	const progressElement = document.getElementById("scroll-progress");
 
-//   function animateLogos() {
-//       logos.forEach((logo) => {
-//           logo.style.transform = `translateX(${distance}px)`;
-//       });
+	progressElement.style.width = scrolledPercentage + "%";
 
-//       distance -= speed;
+	// Check if scrolled more than 20% of the window height
+	if (scrolledPercentage > 20) {
+		progressElement.style.position = "fixed";
+		progressElement.style.left = "0";
+		progressElement.style.top = "0";
+	} else {
+		// Reset position if scrolled back
+		progressElement.style.position = "sticky";
+		progressElement.style.left = null;
+		progressElement.style.top = null;
+	}
+});
 
-//       if (distance <= -170) {
-//           distance = logoContainer.offsetWidth;
-//           logoContainer.appendChild(logos[0]);
-//       }
+//music
 
-//       requestAnimationFrame(animateLogos);
-//   }
+// Function to check if an element is in view
+function isElementInViewport(el) {
+	const rect = el.getBoundingClientRect();
+	return (
+		rect.top >= 0 &&
+		rect.bottom <= (window.innerHeight || document.documentElement.clientHeight)
+	);
+}
 
-//   animateLogos();
-// });
+// Function to play background music when the element is in view
+function handleScroll() {
+	const recentWorksSection = document.getElementById("recent-works");
+	const backgroundMusic = document.getElementById("background-music");
+
+	if (isElementInViewport(recentWorksSection)) {
+		backgroundMusic.play();
+	} else {
+		backgroundMusic.pause();
+	}
+}
+
+// Set up an Intersection Observer to trigger the function on scroll
+const observer = new IntersectionObserver(handleScroll, { threshold: 0.5 });
+observer.observe(document.getElementById("recent-works"));
+
 
 
 // Helper function to debounce scroll event
@@ -301,76 +324,76 @@ document.addEventListener("DOMContentLoaded", function () {
 	});
 });
 
-document
-	.getElementById("openModalButton")
-	.addEventListener("click", function () {
-		document.getElementById("modalOverlay").style.display = "flex";
-	});
+// document
+// 	.getElementById("openModalButton")
+// 	.addEventListener("click", function () {
+// 		document.getElementById("modalOverlay").style.display = "flex";
+// 	});
 
 // Close the modal when the overlay is clicked
-document
-	.getElementById("modalOverlay")
-	.addEventListener("click", function (event) {
-		if (event.target === this) {
-			this.style.display = "none";
-		}
-	});
-document
-	.getElementById("openModalButton2")
-	.addEventListener("click", function () {
-		document.getElementById("modalOverlay").style.display = "flex";
-	});
+// document
+// 	.getElementById("modalOverlay")
+// 	.addEventListener("click", function (event) {
+// 		if (event.target === this) {
+// 			this.style.display = "none";
+// 		}
+// 	});
+// document
+// 	.getElementById("openModalButton2")
+// 	.addEventListener("click", function () {
+// 		document.getElementById("modalOverlay").style.display = "flex";
+// 	});
 
 // Close the modal when the overlay is clicked
-document
-	.getElementById("modalOverlay")
-	.addEventListener("click", function (event) {
-		if (event.target === this) {
-			this.style.display = "none";
-		}
-	});
-document
-	.getElementById("openModalButton3")
-	.addEventListener("click", function () {
-		document.getElementById("modalOverlay").style.display = "flex";
-	});
+// document
+// 	.getElementById("modalOverlay")
+// 	.addEventListener("click", function (event) {
+// 		if (event.target === this) {
+// 			this.style.display = "none";
+// 		}
+// 	});
+// document
+// 	.getElementById("openModalButton3")
+// 	.addEventListener("click", function () {
+// 		document.getElementById("modalOverlay").style.display = "flex";
+// 	});
 
 // Close the modal when the overlay is clicked
-document
-	.getElementById("modalOverlay")
-	.addEventListener("click", function (event) {
-		if (event.target === this) {
-			this.style.display = "none";
-		}
-	});
-document
-	.getElementById("openModalButton4")
-	.addEventListener("click", function () {
-		document.getElementById("modalOverlay").style.display = "flex";
-	});
+// document
+// 	.getElementById("modalOverlay")
+// 	.addEventListener("click", function (event) {
+// 		if (event.target === this) {
+// 			this.style.display = "none";
+// 		}
+// 	});
+// document
+// 	.getElementById("openModalButton4")
+// 	.addEventListener("click", function () {
+// 		document.getElementById("modalOverlay").style.display = "flex";
+// 	});
 
 // Close the modal when the overlay is clicked
-document
-	.getElementById("modalOverlay")
-	.addEventListener("click", function (event) {
-		if (event.target === this) {
-			this.style.display = "none";
-		}
-	});
-document
-	.getElementById("openModalButton5")
-	.addEventListener("click", function () {
-		document.getElementById("modalOverlay").style.display = "flex";
-	});
+// document
+// 	.getElementById("modalOverlay")
+// 	.addEventListener("click", function (event) {
+// 		if (event.target === this) {
+// 			this.style.display = "none";
+// 		}
+// 	});
+// document
+// 	.getElementById("openModalButton5")
+// 	.addEventListener("click", function () {
+// 		document.getElementById("modalOverlay").style.display = "flex";
+// 	});
 
 // Close the modal when the overlay is clicked
-document
-	.getElementById("modalOverlay")
-	.addEventListener("click", function (event) {
-		if (event.target === this) {
-			this.style.display = "none";
-		}
-	});
+// document
+// 	.getElementById("modalOverlay")
+// 	.addEventListener("click", function (event) {
+// 		if (event.target === this) {
+// 			this.style.display = "none";
+// 		}
+// 	});
 
 
 //************EDITED************EDITED*************EDITED***********//
@@ -385,11 +408,11 @@ menu.addEventListener("click", () => {
 });
 
 //Price Cancel Button
-var priceCancelBtn = document.getElementById("price-pop-up-cancel"),
-	priceOverlay = document.getElementById("modalOverlay");
-priceCancelBtn.addEventListener("click", () => {
-	priceOverlay.style.display = "none";
-});
+// var priceCancelBtn = document.getElementById("price-pop-up-cancel"),
+// 	priceOverlay = document.getElementById("modalOverlay");
+// priceCancelBtn.addEventListener("click", () => {
+// 	priceOverlay.style.display = "none";
+// });
 
 //Close Menubar when Navbar links are clicked
 var menuLinks = document.querySelectorAll(".navbar-mobile li");
@@ -400,14 +423,81 @@ menuLinks.forEach((menuLink) => {
 });
 
 //Display CALL TO ACTION onclick *Mobile* Price Grid Buttons
-document
-.getElementById("openModalButton6")
-.addEventListener("click", function () {
-  document.getElementById("modalOverlay").style.display = "flex";
+// document
+// 	.getElementById("openModalButton6")
+// 	.addEventListener("click", function () {
+// 		document.getElementById("modalOverlay").style.display = "flex";
+// 	});
+
+// document
+// 	.getElementById("openModalButton7")
+// 	.addEventListener("click", function () {
+// 		document.getElementById("modalOverlay").style.display = "flex";
+// 	});
+
+window.addEventListener("load", function () {
+	const cursorDot = document.querySelector(".cursor-dot");
+	const cursorOutline = document.querySelector(".cursor-outline");
+
+	window.addEventListener("mousemove", function (e) {
+		const posX = e.clientX;
+		const posY = e.clientY;
+		cursorDot.style.left = `${posX}px`;
+		cursorDot.style.top = `${posY}px`;
+
+		const animation = cursorOutline.animate(
+			[
+				{ left: `${posX}px`, top: `${posY}px` }
+			],
+			{
+				duration: 500,
+				fill: "forwards"
+			}
+		);
+		animation.onfinish = function () {
+		};
+	});
+});
+// navigate to login page
+document.getElementById("Login-btn").addEventListener("click", function () {
+	window.location.href = "login.html";
 });
 
-document
-.getElementById("openModalButton7")
-.addEventListener("click", function () {
-  document.getElementById("modalOverlay").style.display = "flex";
+// document.addEventListener('DOMContentLoaded', function () {
+// 	const lottiePlayers = document.querySelectorAll('.lottiePlayer');
+
+// 	function playLottiePlayers(index) {
+// 		setTimeout(() => {
+// 			lottiePlayers[index].classList.add('lottie-visible');
+// 			if (index < lottiePlayers.length - 1) {
+// 				playLottiePlayers(index + 1);
+// 			}
+// 		}, 1000);
+// 	}
+
+// 	playLottiePlayers(0);
+// });
+
+
+
+// For Modal
+document.addEventListener("DOMContentLoaded", function () {
+    const burgerOpenElements = document.querySelectorAll("#burger-open");
+
+    burgerOpenElements.forEach(function(element) {
+        element.addEventListener("click", function () {
+            const meny = document.getElementById("meny");
+            meny.classList.toggle("open");
+        });
+    });
+});
+
+
+document.addEventListener("DOMContentLoaded", function () {
+	const closeBtn = document.getElementById("burger-close");
+	const meny = document.getElementById("meny");
+
+	closeBtn.addEventListener("click", function () {
+		meny.classList.remove("open");
+	});
 });

@@ -6,24 +6,24 @@ self.addEventListener('install', (event) => {
             .then((cache) => {
                 return cache.addAll([
                     '/',
-                    '/index.html',
+                    '/designs.html',
                     // Add paths to webp images here
-                    '/1.webp',
-                    '/2.webp',
-                    '/3.webp',
-                    '/4.webp',
-                    '/5.webp',
-                    '/6.webp',
-                    '/7.webp',
-                    '/8.webp',
-                    '/9.webp',
-                    '/10.webp',
-                    '/11.webp',
-                    '/12.webp',
+                    'images2/1.webp',
+                    'images2/2.webp',
+                    'images2/3.webp',
+                    'images2/4.webp',
+                    'images2/5.webp',
+                    'images2/6.webp',
+                    'images2/7.webp',
+                    'images2/8.webp',
+                    'images2/9.webp',
+                    'images2/10.webp',
+                    'images2/11.webp',
+                    'images2/12.webp',
                     // Add paths to other assets here if needed
-                    '/buttons/2.png',
-                    '/manifest.json',
-                    '/main.js',
+                    'images2/buttons/2.png',
+                    'images2/manifest.json',
+                    'images2/main.js',
                 ]);
             })
     );

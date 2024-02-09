@@ -1,21 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contentguy.co - Design Agency</title>
     <link rel="manifest" href="/manifest.json">
     <link rel="icon" type="image/png" href="contentguy.png">
+    
     <style>
-       body {
-            cursor: url('buttons/mouse.ico'), auto;
+        body {
+            /* cursor: url('buttons/mouse.ico'), auto; */
+            /* Existing styles */
             margin: 0;
             overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
             height: 100vh;
+            cursor: none;
         }
+
+        .cursor-dot {
+            width: 9px;
+            height: 9px;
+            background-color: white;
+        }
+
+        .cursor-outline {
+            width: 35px;
+            height: 35px;
+            border: 4px solid hsla(0, 0%, 100%, 0.886);
+        }
+
+        .cursor-dot,
+        .cursor-outline {
+            position: fixed;
+            left: 0;
+            top: 0;
+            transform: translate(-50%, -50%);
+            /* Adjusted the translation */
+            border-radius: 50%;
+            z-index: 9999;
+            pointer-events: none;
+        }
+
+
         body {
             margin: 0;
             overflow: hidden;
@@ -35,7 +65,8 @@
             background: url('https://media.tenor.com/I6kN-6X7nhAAAAAi/loading-buffering.gif') no-repeat center center;
             background-size: cover;
             z-index: 9999;
-            display: none; /* Initially hidden */
+            display: none;
+            /* Initially hidden */
         }
 
         #image-container {
@@ -51,83 +82,96 @@
             margin: auto;
         }
 
-            #reset-button {
+        #reset-button {
             position: fixed;
             bottom: 2vh;
             right: 2vw;
             width: 2cm;
             height: auto;
-            cursor: url('buttons/mouse2.ico'), auto; /* Set custom cursor for the button */
+            cursor: pointer;
             transition: transform 0.3s ease;
         }
 
         #reset-button:hover {
             transform: scale(1.05);
         }
+
+
+        
     </style>
+
     <script>
-        // Preload images and loading screen
         const images = Array.from({ length: 12 }, (_, index) => `${index + 1}.webp`);
-        const loadingScreenImage = new Image();
-        loadingScreenImage.src = 'https://media.tenor.com/I6kN-6X7nhAAAAAi/loading-buffering.gif';
+        // const loadingScreenImage = new Image();
+        // loadingScreenImage.src = 'https://media.tenor.com/I6kN-6X7nhAAAAAi/loading-buffering.gif';
 
-        function preloadImages() {
-            images.forEach((image) => {
-                const img = new Image();
-                img.src = image;
-            });
-        }
-
-        function showLoadingScreen() {
-            document.getElementById('loading-container').style.display = 'block';
-        }
-
-        function hideLoadingScreen() {
-            document.getElementById('loading-container').style.display = 'none';
-        }
-
-        function preloadNextImage() {
-            const nextIndex = (currentIndex + 1) % images.length;
-            const nextImage = new Image();
-            nextImage.src = images[nextIndex];
-        }
+        const imageObjects = images.map(image => {
+            const img = new Image();
+            img.src = image;
+            return img;
+        });
 
         let currentIndex = 0;
 
-        function renderImage(src) {
-            document.getElementById('image-viewer').src = src;
-            preloadNextImage();
+        // function showLoadingScreen() {
+        //     document.getElementById('loading-container').style.display = 'block';
+        // }
+
+        // function hideLoadingScreen() {
+        //     document.getElementById('loading-container').style.display = 'none';
+        // }
+
+        function renderImage(index) {
+            document.getElementById('image-viewer').src = imageObjects[index].src;
         }
 
         function resetToImage1() {
-            location.reload(true); // Hard refresh the page
+            renderImage(0);
+            currentIndex = 0;
         }
+
 
         function changeImage() {
             currentIndex = (currentIndex + 1) % images.length;
-            preloadImages(); // Preload images in the background for a smoother transition
-            renderImage(images[currentIndex]);
+            renderImage(currentIndex);
         }
 
-        function handleNextImage() {
-            showLoadingScreen(); // Show loading screen before rendering the next image
-            setTimeout(() => {
-                hideLoadingScreen(); // Hide loading screen after a short delay
-                changeImage();
-            }, 100); // Adjust the delay as needed
-        }
-
-        document.addEventListener('click', handleNextImage);
+        document.addEventListener('click', changeImage);
         document.addEventListener('keydown', (event) => {
             if (event.key !== 'Enter' && event.key !== ' ') {
-                handleNextImage();
+                changeImage();
             }
         });
 
-        preloadImages(); // Preload initial set of images when the page loads
+        window.addEventListener("load", function () {
+            resetToImage1(); // Load the initial image
+        });
+
+        window.addEventListener("mousemove", function (e) {
+            const cursorDot = document.querySelector(".cursor-dot");
+            const cursorOutline = document.querySelector(".cursor-outline");
+            const posX = e.clientX;
+            const posY = e.clientY;
+            cursorDot.style.left = `${posX}px`;
+            cursorDot.style.top = `${posY}px`;
+
+            cursorOutline.animate(
+                [
+                    { left: `${posX}px`, top: `${posY}px` }
+                ],
+                {
+                    duration: 500,
+                    fill: "forwards"
+                }
+            );
+        });
+
     </script>
 </head>
+
 <body>
+    <div class="cursor-dot" data-cursor-dot></div>
+    <div class="cursor-outline" data-cursor-outline></div>
     <div id="loading-container"></div>
 
     <div id="image-container">
@@ -136,4 +180,5 @@
 
     <img id="reset-button" src="buttons/2.png" alt="Reset Button" onclick="resetToImage1()">
 </body>
+
 </html>
