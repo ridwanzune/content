@@ -7,11 +7,10 @@
     <title>Contentguy.co - Design Agency</title>
     <link rel="manifest" href="/manifest.json">
     <link rel="icon" type="image/png" href="contentguy.png">
-    
+
     <style>
         body {
-            /* cursor: url('buttons/mouse.ico'), auto; */
-            /* Existing styles */
+
             margin: 0;
             overflow: hidden;
             display: flex;
@@ -19,6 +18,24 @@
             justify-content: center;
             height: 100vh;
             cursor: none;
+        }
+
+        ::-webkit-scrollbar {
+            width: 0.5vw;
+        }
+
+        ::-webkit-scrollbar-track {
+            background-color: #000000e8;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: #fe9a609b;
+            border-radius: 1rem;
+            background-clip: content-box;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: #fe9b60;
         }
 
         .cursor-dot {
@@ -95,9 +112,6 @@
         #reset-button:hover {
             transform: scale(1.05);
         }
-
-
-        
     </style>
 
     <script>

@@ -212,21 +212,26 @@ window.addEventListener("scroll", function () {
 		}, 0); // No delay, animation starts immediately
 	}
 });
-window.addEventListener("scroll", function () {
-	var navbar = document.querySelector(".h1-column");
+// window.addEventListener("scroll", function () {
+//     var navbar = document.querySelector(".h1-column");
 
-	if (isElementInViewport(navbar)) {
-		// Apply the entrance animation
-		navbar.style.opacity = 0;
-		navbar.style.transform = "translateY(50px)";
+//     if (navbar) {
+//         if (isElementInViewport(navbar)) {
+//             // Apply the entrance animation
+//             navbar.style.opacity = 0;
+//             navbar.style.transform = "translateY(50px)";
 
-		setTimeout(function () {
-			navbar.style.transition = "opacity 1s ease, transform 1s ease";
-			navbar.style.opacity = 1;
-			navbar.style.transform = "translateY(0)";
-		}, 0); // No delay, animation starts immediately
-	}
-});
+//             setTimeout(function () {
+//                 navbar.style.transition = "opacity 1s ease, transform 1s ease";
+//                 navbar.style.opacity = 1;
+//                 navbar.style.transform = "translateY(0)";
+//             }, 0); // No delay, animation starts immediately
+//         }
+//     } else {
+//         console.error("Element with class .h1-column not found.");
+//     }
+// });
+
 
 window.addEventListener("scroll", function () {
 	var navbar = document.querySelector(".six-grid");
@@ -437,7 +442,7 @@ menuLinks.forEach((menuLink) => {
 
 window.addEventListener("load", function () {
 	const cursorDot = document.querySelector(".cursor-dot");
-	const cursorOutline = document.querySelector(".cursor-outline");
+	// const cursorOutline = document.querySelector(".cursor-outline");
 
 	window.addEventListener("mousemove", function (e) {
 		const posX = e.clientX;
@@ -445,17 +450,17 @@ window.addEventListener("load", function () {
 		cursorDot.style.left = `${posX}px`;
 		cursorDot.style.top = `${posY}px`;
 
-		const animation = cursorOutline.animate(
-			[
-				{ left: `${posX}px`, top: `${posY}px` }
-			],
-			{
-				duration: 500,
-				fill: "forwards"
-			}
-		);
-		animation.onfinish = function () {
-		};
+		// const animation = cursorOutline.animate(
+		// 	[
+		// 		{ left: `${posX}px`, top: `${posY}px` }
+		// 	],
+		// 	{
+		// 		duration: 500,
+		// 		fill: "forwards"
+		// 	}
+		// );
+		// animation.onfinish = function () {
+		// };
 	});
 });
 // navigate to login page
@@ -482,14 +487,14 @@ document.getElementById("Login-btn").addEventListener("click", function () {
 
 // For Modal
 document.addEventListener("DOMContentLoaded", function () {
-    const burgerOpenElements = document.querySelectorAll("#burger-open");
+	const burgerOpenElements = document.querySelectorAll("#burger-open");
 
-    burgerOpenElements.forEach(function(element) {
-        element.addEventListener("click", function () {
-            const meny = document.getElementById("meny");
-            meny.classList.toggle("open");
-        });
-    });
+	burgerOpenElements.forEach(function (element) {
+		element.addEventListener("click", function () {
+			const meny = document.getElementById("meny");
+			meny.classList.toggle("open");
+		});
+	});
 });
 
 
@@ -501,3 +506,57 @@ document.addEventListener("DOMContentLoaded", function () {
 		meny.classList.remove("open");
 	});
 });
+
+
+// Email Form
+
+function sendMail() {
+    var email = document.getElementById("email_id").value;
+    var message = document.getElementById("message").value;
+
+    // Simple form validation
+    if (!email.trim() || !message.trim()) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Please fill out both email and message fields.',
+        });
+        return;
+    }
+
+    var params = {
+        email_id: email,
+        message: message
+    };
+
+    emailjs.send("service_5usq08o", "template_vg4mp4o", params)
+        .then(function (res) {
+            if (res.status === 200) {
+                // Clear the input fields
+                document.getElementById("email_id").value = "";
+                document.getElementById("message").value = "";
+
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success!',
+                    text: 'Your message has been sent successfully.',
+                });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'An error occurred while sending your message. Please try again later.',
+                });
+            }
+        })
+        .catch(function (error) {
+            console.error('Error sending email:', error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'An error occurred while sending your message. Please try again later.',
+            });
+        });
+}
+
+
