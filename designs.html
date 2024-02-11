@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contentguy.co - Design Agency</title>
+    <link rel="manifest" href="images2/manifest.json">
+    <link rel="icon" type="image/png" href="images2/contentguy.png">
+    <style>
+        body {
+    /* cursor: ('images2/mouse.ico'), auto; */
+    /* Existing styles */
+    margin: 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+        body {
+            margin: 0;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        #loading-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 1in;
+            height: 1in;
+            background: url('https://media.tenor.com/I6kN-6X7nhAAAAAi/loading-buffering.gif') no-repeat center center;
+            background-size: cover;
+            z-index: 9999;
+            display: none; /* Initially hidden */
+        }
+
+        #image-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow-y: auto;
+        }
+
+        #image-viewer {
+            width: 100%;
+            display: block;
+            margin: auto;
+        }
+
+        #reset-button {
+            position: fixed;
+            bottom: 2vh;
+            right: 2vw;
+            width: 2cm;
+            height: auto;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        #reset-button:hover {
+            transform: scale(1.05);
+        }
+    </style>
+    <script>
+        // Preload images and loading screen
+    const images = Array.from({ length: 12 }, (_, index) => `images2/${index + 1}.webp`);
+        const loadingScreenImage = new Image();
+        loadingScreenImage.src = 'https://media.tenor.com/I6kN-6X7nhAAAAAi/loading-buffering.gif';
+
+        function preloadImages() {
+            images.forEach((image) => {
+                const img = new Image();
+                img.src = image;
+            });
+        }
+
+        function showLoadingScreen() {
+            document.getElementById('loading-container').style.display = 'block';
+        }
+
+        function hideLoadingScreen() {
+            document.getElementById('loading-container').style.display = 'none';
+        }
+
+        function preloadNextImage() {
+            const nextIndex = (currentIndex + 1) % images.length;
+            const nextImage = new Image();
+            nextImage.src = images[nextIndex];
+        }
+
+        let currentIndex = 0;
+
+        function renderImage(src) {
+            document.getElementById('image-viewer').src = src;
+            preloadNextImage();
+        }
+
+        function resetToImage1() {
+            location.reload(true); // Hard refresh the page
+        }
+
+        function changeImage() {
+            currentIndex = (currentIndex + 1) % images.length;
+            preloadImages(); // Preload images in the background for a smoother transition
+            renderImage(images[currentIndex]);
+        }
+
+        function handleNextImage() {
+            showLoadingScreen(); // Show loading screen before rendering the next image
+            setTimeout(() => {
+                hideLoadingScreen(); // Hide loading screen after a short delay
+                changeImage();
+            }, 100); // Adjust the delay as needed
+        }
+
+        document.addEventListener('click', handleNextImage);
+        document.addEventListener('keydown', (event) => {
+            if (event.key !== 'Enter' && event.key !== ' ') {
+                handleNextImage();
+            }
+        });
+
+        preloadImages(); // Preload initial set of images when the page loads
+    </script>
+</head>
+<body>
+    <div id="loading-container"></div>
+
+    <div id="image-container">
+        <img id="image-viewer" src="images2/1.webp" alt="Image 1" loading="eager">
+    </div>
+
+    <img id="reset-button" src="images2/2.png" alt="Reset Button" onclick="resetToImage1()">
+</body>
+</html>

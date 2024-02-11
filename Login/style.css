@@ -1,0 +1,117 @@
+:root {
+    --valid: hsl(140 80% 40%);
+    --invalid: hsl(10 80% 40%);
+    --input: hsl(0 0% 0%);
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 100;
+    background-color: hsl(0 0% 2%);
+    background-image: url(https://assets.website-files.com/5837424ae11409586f837994/611b2d3c1a84f270060c9ec1_Texture.png);
+    color: hsl(0 0% 98%);
+}
+
+.ghost {
+    height: 40%;
+    width: 40%;
+    object-fit: contain;
+    margin: auto;
+}
+
+.form-group {
+    --active: 0;
+    container-type: inline-size;
+    flex: 1;
+
+}
+
+.form-container {
+    background-color: hsl(0 0% 6%);
+    padding: 50px 35px 50px 35px;
+    box-shadow: 0 0 60px rgba(0, 0, 0, 0.719);
+    border-radius: 15px;
+}
+
+
+form {
+    width: 50ch;
+}
+
+input {
+    --is-valid: 0;
+    --is-invalid: 0;
+    background: linear-gradient(var(--input), var(--input)) padding-box,
+        linear-gradient(var(--invalid), var(--invalid)) calc((1 - var(--is-invalid)) * -100cqi) 0 / 100% 100% border-box,
+        linear-gradient(var(--valid), var(--valid)) calc((1 - var(--is-valid)) * 100cqi) 0 / 100% 100% border-box,
+        var(--input);
+    border: 2px solid transparent;
+    font-size: 1rem;
+    background-repeat: no-repeat;
+    max-width: 100%;
+    font-family: "Geist Sans", "SF Pro", sans-serif;
+    font-weight: 40;
+    background-color: #3b4148;
+    border-radius: 10px;
+    color: #a9a9a9;
+    margin-bottom: 1em;
+    padding: 0 16px;
+    width: 100%;
+    outline: 0;
+    height: 50px;
+}
+
+label {
+    margin-bottom: 0.5rem;
+    display: inline-block;
+    padding-left: 5px;
+    opacity: calc(var(--active) + 0.45);
+    transition: opacity 0.5s;
+}
+
+.form-group:focus-within {
+    --active: 1;
+}
+
+input:invalid:not(:placeholder-shown):not(:focus-visible) {
+    --is-invalid: 1;
+}
+
+input:valid {
+    --is-valid: 1;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    input {
+        transition: background-position 0.5s;
+    }
+}
+
+.submitbtn {
+    background: #2a292c;
+    border: 0;
+    margin-top: 0.5rem;
+    width: 100%;
+    height: 45px;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+.submitbtn:hover {
+    background: #404949;
+}
+
+h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+    font-weight: 400;
+    font-size: 30px;
+    color: #a9a9a9;
+}
