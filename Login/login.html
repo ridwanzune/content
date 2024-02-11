@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Input Validation</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.0.2/tailwind.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .main-container {
+      /* Your existing styles for .main-container */
+    }
+
+    .lottieContainer {
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .lottiePlayer {
+      text-align: center;
+      margin: 20px 0;
+      height: 300px;
+      width: 300px;
+      /* opacity: 0; */
+      transition: opacity 1s ease-in-out;
+    }
+
+    .lottiePlayer.lottie-visible {
+      /* opacity: 1; */
+    }
+
+    .lottiePlayer img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+    }
+
+    .lottiePlayer p {
+      margin-top: -10px;
+      color: #fff;
+      max-width: 300px;
+      font-size: 20px;
+      font-weight: bold;
+      font-family: "Montserrat", sans-serif;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="lottieContainer">
+    <div class="lottiePlayer lottie-visible">
+      <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+      <lottie-player src="https://assets.website-files.com/5837424ae11409586f837994/5e1767da10a1f51ca4fa361f_data.json"
+        background speed="1" style="width: 200px; height: 100px" direction="1" mode="normal" loop autoplay>
+      </lottie-player>
+      <p style="color: #fff;">Contact us to get unlimited design request or comission a Website</p>
+    </div>
+    <div class="lottieContainer">
+      <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+      <lottie-player src="https://assets.website-files.com/5837424ae11409586f837994/5e177abae85f69bf6f2f813a_data.json"
+        speed="1" style="width: 300px; height: 100px" direction="1" mode="normal" loop autoplay>
+      </lottie-player>
+      <p style="color: #fff;">Get your sizzling content/design/website in just 2 days, Monday to Friday.</p>
+    </div>
+    <div class="lottieContainer">
+      <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+      <lottie-player src="https://assets.website-files.com/5837424ae11409586f837994/5e177f46fb9c030823177d84_data.json"
+        speed="1" style="width: 300px; height: 100px" direction="1" mode="normal" loop autoplay>
+      </lottie-player>
+      <p style="color: #fff;">We won't stop until you're doing the happy dance!</p>
+    </div>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const lottiePlayers = document.querySelectorAll('.lottiePlayer');
+
+      function playLottiePlayers(index) {
+        setTimeout(() => {
+          lottiePlayers[index].classList.add('lottie-visible');
+          if (index < lottiePlayers.length - 1) {
+            playLottiePlayers(index + 1);
+          }
+        }, 1000); // Adjust the delay based on the duration of your Lottie animations
+      }
+
+      playLottiePlayers(0);
+    });
+  </script>
+</body>
+
+</html>
