@@ -463,10 +463,10 @@ window.addEventListener("load", function () {
 		// };
 	});
 });
-// navigate to login page
-document.getElementById("Login-btn").addEventListener("click", function () {
-	window.location.href = "login.html";
-});
+// // navigate to login page
+// document.getElementById("Login-btn").addEventListener("click", function () {
+// 	window.location.href = "login.html";
+// });
 
 // document.addEventListener('DOMContentLoaded', function () {
 // 	const lottiePlayers = document.querySelectorAll('.lottiePlayer');
@@ -511,52 +511,60 @@ document.addEventListener("DOMContentLoaded", function () {
 // Email Form
 
 function sendMail() {
-    var email = document.getElementById("email_id").value;
-    var message = document.getElementById("message").value;
+	var email = document.getElementById("email_id").value;
+	var message = document.getElementById("message").value;
 
-    // Simple form validation
-    if (!email.trim() || !message.trim()) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Please fill out both email and message fields.',
-        });
-        return;
-    }
+	// Simple form validation
+	if (!email.trim() || !message.trim()) {
+		Swal.fire({
+			icon: 'error',
+			title: 'Oops...',
+			text: 'Please fill out both email and message fields.',
+		});
+		return;
+	}
 
-    var params = {
-        email_id: email,
-        message: message
-    };
+	var params = {
+		email_id: email,
+		message: message
+	};
 
-    emailjs.send("service_5usq08o", "template_vg4mp4o", params)
-        .then(function (res) {
-            if (res.status === 200) {
-                // Clear the input fields
-                document.getElementById("email_id").value = "";
-                document.getElementById("message").value = "";
+	emailjs.send("service_5usq08o", "template_vg4mp4o", params)
+		.then(function (res) {
+			if (res.status === 200) {
+				// Clear the input fields
+				document.getElementById("email_id").value = "";
+				document.getElementById("message").value = "";
 
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Success!',
-                    text: 'Your message has been sent successfully.',
-                });
-            } else {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'An error occurred while sending your message. Please try again later.',
-                });
-            }
-        })
-        .catch(function (error) {
-            console.error('Error sending email:', error);
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'An error occurred while sending your message. Please try again later.',
-            });
-        });
+				Swal.fire({
+					icon: 'success',
+					title: 'Success!',
+					text: 'Your message has been sent successfully.',
+				});
+			} else {
+				Swal.fire({
+					icon: 'error',
+					title: 'Oops...',
+					text: 'An error occurred while sending your message. Please try again later.',
+				});
+			}
+		})
+		.catch(function (error) {
+			console.error('Error sending email:', error);
+			Swal.fire({
+				icon: 'error',
+				title: 'Oops...',
+				text: 'An error occurred while sending your message. Please try again later.',
+			});
+		});
 }
+
+
+document.addEventListener("DOMContentLoaded", function () {
+	const image = document.getElementById("reload-image");
+	image.addEventListener("click", function () {
+		location.reload();
+	});
+});
 
 

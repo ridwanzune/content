@@ -6,6 +6,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="icon" href="images2/contentguy.webp" type="image/png">
 	<title>Contentguy</title>
+	<!-- SweetAlert2 CSS -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 	<link rel="stylesheet" href="styles.css">
 	<link rel="stylesheet" href="mobile-styles.css" media="screen and (max-width: 770px)">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
@@ -14,6 +16,19 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
 	<!-- ScrollTrigger -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
+	<!-- Email Service Api integration -->
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+	</script>
+	<script type="text/javascript">
+		(function () {
+			emailjs.init({
+				publicKey: "VaLjoOzSohg21I0YL",
+			});
+		})();
+	</script>
+	<!-- SweetAlert2 JS -->
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 
 <body>
@@ -23,7 +38,7 @@
 		<div class="webpage-content">
 			<div class="cursor-dot" data-cursor-dot></div>
 			<div class="header">
-				<img src="images2/contentguy.webp" alt="top-image" class="top-image">
+				<img src="images2/contentguy.webp" alt="top-image" class="top-image" id="reload-image">
 				<div id="menu" class="menu-toggle">
 					<span></span>
 					<span></span>
@@ -40,13 +55,14 @@
 					<li><a href="#FAQ">FAQs</a></li>
 				</ul>
 			</div>
+
 			<div id="navbar" class="navbar">
 				<ul>
 					<li class="arrow"><a href="#"></a></li>
-					<li id="Login-btn"><a href="/login">Login</a></li>
+					<li><a href="#about">About Us</a></li>
 					<li><a href="#recent-works">Recent Work</a></li>
-					<li><a href="#scope-of-work">Scope of Work</a></li>
-					<li><a href="#Pricing">Pricing</a></li>
+					<li><a href="#services">Service</a></li>
+					<li><a href="#Pricing">Blogs</a></li>
 					<li><a href="#FAQ">FAQs</a></li>
 				</ul>
 			</div>
@@ -58,11 +74,11 @@
 					<form class="main-container">
 						<h1>ENQUIRY</h1>
 						<img id="burger-close" class="form-img" src="./images2/buttons/close.png" alt="Close Menu">
-						<input name="email" type="email" placeholder="Enter Your Email">
+						<input id="email_id" name="email" type="email" placeholder="Enter Your Email">
 						<hr class="hr">
-						<textarea name="email" type="" placeholder="Your Message?"></textarea>
+						<textarea id="message" name="message" placeholder="Your Message?"></textarea>
 						<div class="dash"></div>
-						<a href="#" class="btnn">Contact</a>
+						<a href="#" onclick="sendMail()" class="btnn">Contact</a>
 						<div class="side-texts">
 							<h4>Contentguy is a team of internet marketers specialized in creating internet experiences
 								that
@@ -76,11 +92,14 @@
 									USA</h5>
 								<h5>Contacts <br>
 									+8801614395930 <br>
-									ridwan@xrougex.com
+									<a style="text-decoration: none; color: #ffffff; cursor: none;"
+										href="mailto:ridwan@xrougex.com">ridwan@xrougex.com</a>
+
 								</h5>
 								<h5>Contacts <br>
 									+1 (408) 333-4849 <br>
-									rehnuma@contentguy.co
+									<a style="text-decoration: none; color: #ffffff; cursor: none;"
+										href="mailto:rehnuma@contentguy.co">rehnuma@contentguy.co</a>
 								</h5>
 							</div>
 
@@ -325,7 +344,7 @@
 
 				</div>
 
-				<div class="pink-column">
+				<div id="about" class="pink-column">
 					<div class="pink-column-img">
 						<img class="pink-column-left" src="images2/pcl.webp" alt="">
 						<img class="pink-column-right"
@@ -438,10 +457,11 @@
 					</div>
 				</div>
 				<!-- Services -->
-				<section class="service-container">
+				<section id="services" class="service-container">
 					<div class="spacer"></div>
 					<h1 style="width: 100%; text-align: center; margin-bottom:50px ;"> What we serve? </h1>
 					<div class="gallery">
+
 						<div class="left">
 							<div class="desktopContent">
 								<div class="desktopContentSection">
@@ -476,19 +496,20 @@
 						<div class="right">
 							<div class="desktopPhotos">
 								<div class="desktopPhoto">
-									<img src="images2/01.webp" alt="">
+									<img src="./images2/buttons/1.webp" alt="">
 								</div>
 								<div class="desktopPhoto">
-									<img src="images2/02.webp" alt="">
+									<img src="./images2/buttons/2.webp" alt="">
 								</div>
 								<div class="desktopPhoto">
-									<img src="images2/003.webp" alt="">
+									<img src="./images2/buttons/3.webp" alt="">
 								</div>
 								<div class="desktopPhoto">
-									<img src="images2/004.webp" alt="">
+									<img src="./images2/buttons/4.gif" alt="">
 								</div>
 							</div>
 						</div>
+
 					</div>
 				</section>
 
@@ -576,10 +597,6 @@
 				<div class="projects-footer">
 					<h2 style="display: none;">Designs commonly featured by</h2>
 				</div>
-			</div>
-
-			<div class="scope-of-work" id="scope-of-work">
-
 			</div>
 
 			<!--Price Grid For Mobile View-->
@@ -707,7 +724,7 @@
 				<!--1. keep -->
 				<div class="faq-drawer">
 					<input class="faq-drawer__trigger" id="faq-drawer-1" type="checkbox" /><label
-						class="faq-drawer__title" for="faq-drawer-1">How fast will I receive my designs?</label>
+						class="faq-drawer__title" for="faq-drawer-1">How fast will I receive my deliverables?</label>
 					<div class="faq-drawer__content-wrapper">
 						<div class="faq-drawer__content">
 							<p>
@@ -799,16 +816,18 @@
 			<div class="bottom-div">
 				<div class="footer__left-col">
 					<a href="/" aria-current="page" class="footer__bottom-logo w-inline-block w--current">
-						<img src="images2/contentguy.webp" loading="lazy" alt=""></a>
+						<img style="cursor: none;" src="images2/contentguy.webp" loading="lazy" alt=""></a>
 					<div class="div-block-3">
 						<div class="footer__head">123 Orchard Park Cir Davis, CA 95616, USA</div>
 					</div>
 				</div>
 
 				<div class="footer__right-col">
-					<div class="footer__link-col-left"><a href="https://www.behance.net/ridwanzune"
-							class="footer__link">Latest projects</a>
-						<p class="footer__linkk">Contact us to connect at <br> hello@contentguy.co</p>
+					<div class="footer__link-col-left">
+						<p class="footer__linkk">Contact us to connect at <br>
+							<a style="text-decoration: none; color: #ffffff; cursor: none;"
+								href="mailto:rehnuma@contentguy.co">rehnuma@contentguy.co</a>
+						</p>
 					</div>
 				</div>
 			</div>
@@ -823,54 +842,54 @@
 		integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg=="
 		crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-		<script>
-			function setupScrollAnimations() {
-				const details = gsap.utils.toArray(".desktopContentSection:not(:first-child)");
-				const photos = gsap.utils.toArray(".desktopPhoto:not(:first-child)");
-		
-				gsap.set(photos, { yPercent: 101 });
-		
-				const allPhotos = gsap.utils.toArray(".desktopPhoto");
-		
-				let mm = gsap.matchMedia();
-		
-				mm.add("(min-width: 600px)", () => {
-					console.log("desktop");
-		
-					ScrollTrigger.create({
-						trigger: ".gallery",
-						start: "top top",
-						end: "bottom bottom",
-						pin: ".right"
-					});
-		
-					details.forEach((detail, index) => {
-						let headline = detail.querySelector("h1");
-						let animation = gsap.timeline()
-							.to(photos[index], { yPercent: 0 })
-							.set(allPhotos[index], { autoAlpha: 0 });
-		
-						ScrollTrigger.create({
-							trigger: headline,
-							start: "top 80%",
-							end: "top 30%",
-							animation: animation,
-							scrub: 2,
-							markers: false
-						});
-					});
-		
-					return () => {
-						console.log("mobile");
-					};
+	<script>
+		function setupScrollAnimations() {
+			const details = gsap.utils.toArray(".desktopContentSection:not(:first-child)");
+			const photos = gsap.utils.toArray(".desktopPhoto:not(:first-child)");
+
+			gsap.set(photos, { yPercent: 101 });
+
+			const allPhotos = gsap.utils.toArray(".desktopPhoto");
+
+			let mm = gsap.matchMedia();
+
+			mm.add("(min-width: 600px)", () => {
+				console.log("desktop");
+
+				ScrollTrigger.create({
+					trigger: ".gallery",
+					start: "top top",
+					end: "bottom bottom",
+					pin: ".right"
 				});
-			}
-		
-			document.addEventListener("DOMContentLoaded", function () {
-				setupScrollAnimations();
+
+				details.forEach((detail, index) => {
+					let headline = detail.querySelector("h1");
+					let animation = gsap.timeline()
+						.to(photos[index], { yPercent: 0 })
+						.set(allPhotos[index], { autoAlpha: 0 });
+
+					ScrollTrigger.create({
+						trigger: headline,
+						start: "top 80%",
+						end: "top 30%",
+						animation: animation,
+						scrub: 2,
+						markers: false
+					});
+				});
+
+				return () => {
+					console.log("mobile");
+				};
 			});
-		</script>
-		
+		}
+
+		document.addEventListener("DOMContentLoaded", function () {
+			setupScrollAnimations();
+		});
+	</script>
+
 
 	<!-- locomotive js -->
 
@@ -900,6 +919,11 @@
 			},
 		});
 	</script>
+
+	<!-- email service -->
+	<!-- SweetAlert2 JS -->
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
 </body>
 
