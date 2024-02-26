@@ -6,11 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contentguy.co - Design Agency</title>
     <link rel="manifest" href="/manifest.json">
-    <link rel="icon" type="image/png" href="contentguy.png">
+    <link rel="icon" type="image/png" href="https://res.cloudinary.com/dy80ftu9k/image/upload/v1708516630/contentguy_gg6jqb.png">
 
     <style>
         body {
-
             margin: 0;
             overflow: hidden;
             display: flex;
@@ -39,29 +38,27 @@
         }
 
         .cursor-dot {
-            width: 9px;
-            height: 9px;
-            background-color: white;
+            width: 15px;
+            height: 15px;
+            background-color: #ea552b;
         }
 
         .cursor-outline {
             width: 35px;
             height: 35px;
-            border: 4px solid hsla(0, 0%, 100%, 0.886);
+            border: 4px solid hsla(0, 0%, 100%, 0.833);
         }
 
         .cursor-dot,
         .cursor-outline {
             position: fixed;
-            left: 0;
-            top: 0;
+            left: 50%;
+            bottom: 10%;
             transform: translate(-50%, -50%);
-            /* Adjusted the translation */
             border-radius: 50%;
             z-index: 9999;
             pointer-events: none;
         }
-
 
         body {
             margin: 0;
@@ -115,9 +112,20 @@
     </style>
 
     <script>
-        const images = Array.from({ length: 12 }, (_, index) => `${index + 1}.webp`);
-        // const loadingScreenImage = new Image();
-        // loadingScreenImage.src = 'https://media.tenor.com/I6kN-6X7nhAAAAAi/loading-buffering.gif';
+        const images = [
+            "https://res.cloudinary.com/dy80ftu9k/image/upload/v1708709554/Webportfolio/Index%20of%20portfolio.%20award%20winning.webp",
+            "https://res.cloudinary.com/dy80ftu9k/image/upload/v1708709554/Webportfolio/Zendesk%20award%20winning.webp",
+            "https://res.cloudinary.com/dy80ftu9k/image/upload/v1708709554/Webportfolio/Website%20developer%20top%20in%20USA.webp",
+            "https://res.cloudinary.com/dy80ftu9k/image/upload/v1708709555/Webportfolio/California%20Tech%20comany.webp",
+            "https://res.cloudinary.com/dy80ftu9k/image/upload/v1708709876/Webportfolio/Web%20agency%20contentguys.webp",
+            "https://res.cloudinary.com/dy80ftu9k/image/upload/v1708709877/Webportfolio/Web%20developer%20in%20Canada.webp",
+            "https://res.cloudinary.com/dy80ftu9k/image/upload/v1708709876/Webportfolio/Top%20notch%20marketing%20agency%20in%20Bangladesh.webp",
+            "https://res.cloudinary.com/dy80ftu9k/image/upload/v1708709877/Webportfolio/web%20design%20agenci%20ui%20ux.webp",
+            "https://res.cloudinary.com/dy80ftu9k/image/upload/v1708709877/Webportfolio/website%20landing%20page%20modern.webp",
+            "https://res.cloudinary.com/dy80ftu9k/image/upload/v1708709878/Webportfolio/web%20agency%20wix%20branding.webp",
+            "https://res.cloudinary.com/dy80ftu9k/image/upload/v1708709878/Webportfolio/Marketing%20and%20design%20services%20branding.webp",
+            "https://res.cloudinary.com/dy80ftu9k/image/upload/v1708709879/Webportfolio/Web%20agency%20in%20California%20HTML.webp"
+        ];
 
         const imageObjects = images.map(image => {
             const img = new Image();
@@ -127,14 +135,6 @@
 
         let currentIndex = 0;
 
-        // function showLoadingScreen() {
-        //     document.getElementById('loading-container').style.display = 'block';
-        // }
-
-        // function hideLoadingScreen() {
-        //     document.getElementById('loading-container').style.display = 'none';
-        // }
-
         function renderImage(index) {
             document.getElementById('image-viewer').src = imageObjects[index].src;
         }
@@ -143,7 +143,6 @@
             renderImage(0);
             currentIndex = 0;
         }
-
 
         function changeImage() {
             currentIndex = (currentIndex + 1) % images.length;
@@ -185,7 +184,6 @@
 
 <body>
     <div class="cursor-dot" data-cursor-dot></div>
-    <div class="cursor-outline" data-cursor-outline></div>
     <div id="loading-container"></div>
 
     <div id="image-container">

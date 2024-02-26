@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Blogs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="" />
+  <!-- SweetAlert2 CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+  <link rel="stylesheet" href="blog.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+	<!-- Email Service Api integration -->
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+	</script>
+	<script type="text/javascript">
+		(function () {
+			emailjs.init({
+				publicKey: "VaLjoOzSohg21I0YL",
+			});
+		})();
+	</script>
+  <!-- SweetAlert2 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body id="main">
+  <div class="cursor-dot" data-cursor-dot></div>
+  <div class="parentDiv">
+    <div class="nav">
+      <ul>
+        <li><a class="navlinks" href="index.html">Home</a></li>
+        <li><a class="navlinks" href="">Blogs</a></li>
+        <li>
+          <p id="burger-open" class="navlinks" href="">Contact</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container">
+    <article id="article">
+      <div class="home">
+        <img src="" alt="">
+        <div class="overlay">
+          <h1 class="title"></h1>
+        </div>
+      </div>
+
+      <div class="content">
+        <ul class="subject_list">
+          <li class="item summary">
+            <h1 class="title">Topics</h1>
+            <hr />
+          </li>
+        </ul>
+        <section class="subject_sections"></section>
+        <div class="right-part">
+          <h1 style="margin: -3rem 0 -2rem 0;">Relevant Blogs</h1>
+          <div class="blog-card" id="right-blog-1">
+            <img src="" alt="">
+          </div>
+          <div class="blog-title" id="title-right-blog-1"></div>
+          <div class="blog-card" id="right-blog-2">
+            <img src="" alt="">
+          </div>
+          <div class="blog-title" id="title-right-blog-2"></div>
+          <div class="blog-card" id="right-blog-3">
+            <img src="" alt="">
+          </div>
+          <div class="blog-title" id="title-right-blog-3"></div>
+          <div class="blog-card" id="right-blog-4">
+            <img src="" alt="">
+          </div>
+          <div class="blog-title" id="title-right-blog-4"></div>
+          <div class="blog-card" id="right-blog-5">
+            <img src="" alt="">
+          </div>
+          <div class="blog-title" id="title-right-blog-5"></div>
+        </div>
+      </div>
+      <!-- sidebar -->
+      <header class="sidebar-menu">
+        <!-- <img id="burger-open" class="open-modal" src="./images2/buttons/open.png" alt="Open Menu"> -->
+        <nav id="meny">
+          <form class="main-container">
+            <h1>ENQUIRY</h1>
+            <img id="burger-close" class="form-img" src="./images2/buttons/close.png" alt="Close Menu">
+            <input id="email_id" name="email" type="email" placeholder="Enter Your Email">
+            <hr class="hr">
+            <textarea id="message" name="message" placeholder="Your Message?"></textarea>
+            <div class="dash"></div>
+            <a href="#" onclick="sendMail()" class="btnn">Contact</a>
+            <div class="side-texts">
+              <h4>Contentguy is a team of internet marketers specialized in creating internet experiences
+                that
+                boost your business. Based in California, USA we offer our services all around the
+                world.
+              </h4>
+              <div class="Contactcontainer">
+                <h5>Dhaka Office <br> 136, Kalachadpur, North Baridhara, Dhaka 1206,<br> Bangladesh</h5>
+                <h5>California Office <br>
+                  123 Orchard Park Cir Davis, CA 95616,<br>
+                  USA</h5>
+                <h5>Contacts <br>
+                  +8801614395930 <br>
+                  <a style="text-decoration: none; color: #ffffff; cursor: none;"
+                    href="mailto:ridwan@xrougex.com">ridwan@xrougex.com</a>
+
+                </h5>
+                <h5>Contacts <br>
+                  +1 (408) 333-4849 <br>
+                  <a style="text-decoration: none; color: #ffffff; cursor: none;"
+                    href="mailto:rehnuma@contentguy.co">rehnuma@contentguy.co</a>
+                </h5>
+              </div>
+
+            </div>
+          </form>
+        </nav>
+      </header>
+    </article>
+
+  </div>
+
+  <footer class="footer-distributed">
+    <div class="footer-left">
+
+      <img src="https://res.cloudinary.com/dy80ftu9k/image/upload/v1708516630/contentguy_gg6jqb.png" alt="">
+
+      <p
+        style="margin-left: 0.9rem; color: #ffffff;font-weight: 200; font-family: poppins; margin-top: 1rem; width: 80%;">
+        Formerly a marketing agency, we now specialize in crafting tailored digital solutions for businesses, leveraging
+        our deep understanding of their needs.
+      </p>
+      <div style="margin-left: 0.8rem ;" class="main">
+        <a href="https://www.facebook.com/rougexasia" class="nav-item">
+          <div class="nav-links transition-all">
+            <i class="fab fa-facebook"></i>
+          </div>
+        </a>
+        <a href="https://www.instagram.com/rougexasia" class="nav-item">
+          <div class="nav-links">
+            <i class="fab fa-instagram"></i>
+          </div>
+        </a>
+        <a href="https://www.linkedin.com/company/96609143" class="nav-item">
+          <div class="nav-links transition-all">
+            <i class="fab fa-linkedin-in"></i>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-center">
+
+      <div>
+        <span style="font-weight: 600; color: #ffffff;">California Office</span> <br>
+        <p style="font-weight: 200; font-family: poppins; font-size: 14px;">123 Orchard Park Cir Davis,<br> CA 95616,
+          USA</p>
+      </div>
+      <div style="margin-top: 1rem;">
+        <span style="font-weight: 600; color: #ffffff;">Dhaka Office</span> <br>
+        <p style="font-weight: 200; font-family: poppins; font-size: 14px;">136, Kalachadpur, North Baridhara,<br> Dhaka
+          1206, Bangladesh</p>
+      </div>
+
+      <div style="margin-top: 1rem;">
+        <span style="font-weight: 600; color: #ffffff;">Contacts</span> <br>
+        <p style="font-weight: 200;margin-top: 0.5rem; font-family: poppins; font-size: 14px;">
+          +1 (408) 333-4849
+          ridwan@xrougex.com
+        </p>
+        <p style="font-weight: 200;margin-top: 0.5rem; font-family: poppins; font-size: 14px;">
+          +8801614395930
+          rehnuma@contentguy.co
+        </p>
+      </div>
+    </div>
+
+    <div class="footer-right">
+      <div class="col-xs-6 col-md-3">
+        <span style="font-weight: 600; color: #ffffff;">Quick Links</span>
+        <ul class="right-footer-links">
+          <li><a href="./index.html">Home</a></li>
+          <li><a href="">Blogs</a></li>
+          <li><a href="./index.html">About Us</a></li>
+          <li>
+            <p id="burger-open">Contact</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <p
+      style="color: #ffffff;font-weight: 200; font-family: poppins; width:30%; text-align: center;margin: 4rem auto 4rem auto;">
+      © 2024 Contentguy.co. All rights reserved.</p>
+  </footer>
+
+  <script src="blog.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <!-- locomotive js -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const locoScroll = new LocomotiveScroll({
+        el: document.querySelector("#main"),
+        smooth: true
+      });
+    });
+  </script> -->
+</body>
+
+</html>

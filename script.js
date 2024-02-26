@@ -6,20 +6,17 @@ document.addEventListener("scroll", function () {
 
 	progressElement.style.width = scrolledPercentage + "%";
 
-	// Check if scrolled more than 20% of the window height
 	if (scrolledPercentage > 20) {
 		progressElement.style.position = "fixed";
 		progressElement.style.left = "0";
 		progressElement.style.top = "0";
 	} else {
-		// Reset position if scrolled back
 		progressElement.style.position = "sticky";
 		progressElement.style.left = null;
 		progressElement.style.top = null;
 	}
 });
 
-//music
 
 // Function to check if an element is in view
 function isElementInViewport(el) {
@@ -31,16 +28,99 @@ function isElementInViewport(el) {
 }
 
 // Function to play background music when the element is in view
-function handleScroll() {
-	const recentWorksSection = document.getElementById("recent-works");
-	const backgroundMusic = document.getElementById("background-music");
+// function handleScroll(sectionId) {
+// 	const section = document.getElementById(sectionId);
+// 	const backgroundMusic = document.getElementById("background-music");
+// 	const backgroundMusic1 = document.getElementById("background-music1");
+// 	const backgroundMusic2 = document.getElementById("background-music2");
+// 	const backgroundMusic3 = document.getElementById("background-music3");
+// 	const backgroundMusic4 = document.getElementById("background-music0");
 
-	if (isElementInViewport(recentWorksSection)) {
-		backgroundMusic.play();
-	} else {
-		backgroundMusic.pause();
-	}
+// 	// Check if the current section is in the viewport
+// 	if (isElementInViewport(section)) {
+// 		// Pause all audio elements
+// 		pauseAllAudio();
+
+// 		// Play audio associated with the current section
+// 		switch (sectionId) {
+// 			case "herohero":
+// 				backgroundMusic.play();
+// 				break;
+// 			case "casecase":
+// 				backgroundMusic1.play();
+// 				break;
+// 			case "services":
+// 				backgroundMusic2.play();
+// 				break;
+// 			case "footer-div":
+// 				backgroundMusic3.play();
+// 				break;
+// 			case "recent-works":
+// 				backgroundMusic4.play();
+// 				break;
+// 		}
+// 	} else {
+// 		pauseAllAudio();
+// 	}
+// }
+
+// function pauseAllAudio() {
+// 	const audioElements = document.querySelectorAll("audio");
+// 	audioElements.forEach(audio => {
+// 		audio.pause();
+// 	});
+// }
+
+// window.addEventListener('scroll', function () {
+// 	handleScroll("herohero");
+// 	handleScroll("casecase");
+// 	handleScroll("services");
+// 	handleScroll("footer-div");
+// 	handleScroll("recent-works");
+// });
+
+// Function to handle scroll events and play/pause audio accordingly
+function handleScroll() {
+    // Get all sections
+    const sections = document.querySelectorAll('section');
+
+    // Iterate over each section
+    sections.forEach(section => {
+        // Check if the section is in the viewport
+        if (isElementInViewport(section)) {
+            // Pause all audio elements except the one associated with the current section
+            pauseAllAudio();
+
+            // Play audio associated with the current section
+            switch (section.id) {
+                case "herohero":
+                    document.getElementById('background-music').play();
+                    break;
+                case "casecase":
+                    document.getElementById('background-music1').play();
+                    break;
+                case "services":
+                    document.getElementById('background-music2').play();
+                    break;
+                case "recent-works":
+                    document.getElementById('background-music0').play();
+                    break;
+                case "footer-div":
+                    document.getElementById('background-music3').play();
+                    break;
+            }
+        }
+    });
 }
+
+// Add scroll event listener to call handleScroll function
+window.addEventListener('scroll', handleScroll);
+
+// Call handleScroll initially to check audio playback on page load
+handleScroll();
+
+
+
 
 // Set up an Intersection Observer to trigger the function on scroll
 const observer = new IntersectionObserver(handleScroll, { threshold: 0.5 });
@@ -111,7 +191,7 @@ window.addEventListener("load", function () {
 });
 
 //scroll and reveal
-const elementsToReveal = document.querySelectorAll(".content");
+const elementsToReveal = document.querySelectorAll(".contentt");
 
 function revealOnScroll() {
 	elementsToReveal.forEach((element) => {
@@ -126,13 +206,11 @@ function revealOnScroll() {
 }
 
 window.addEventListener("scroll", revealOnScroll);
-// Initial reveal in case elements are already visible on page load
 revealOnScroll();
 
 window.addEventListener("load", function () {
 	var navbar = document.querySelector(".navbar");
 
-	// Apply the entrance animation
 	navbar.style.opacity = 0;
 	navbar.style.transform = "translateX(-50%) translateY(20px)";
 
@@ -140,7 +218,7 @@ window.addEventListener("load", function () {
 		navbar.style.transition = "opacity 1s ease, transform 0.5s ease";
 		navbar.style.opacity = 1;
 		navbar.style.transform = "translateX(-50%) translateY(0)";
-	}, 1000); // No delay, animation starts immediately
+	}, 1000);
 });
 
 // Function to check if an element is in the viewport
@@ -152,163 +230,127 @@ function isElementInViewport(element) {
 	);
 }
 
-window.addEventListener("scroll", function () {
-	var navbar = document.querySelector(".column");
-
-	if (isElementInViewport(navbar)) {
-		// Apply the entrance animation
-		navbar.style.opacity = 0;
-		navbar.style.transform = "translateY(40px)";
-
-		setTimeout(function () {
-			navbar.style.transition = "opacity 1s ease, transform 1s ease";
-			navbar.style.opacity = 1;
-			navbar.style.transform = "translateY(0)";
-		}, 0); // No delay, animation starts immediately
-	}
-});
-window.addEventListener("scroll", function () {
-	var navbar = document.querySelector(".row");
-
-	if (isElementInViewport(navbar)) {
-		// Apply the entrance animation
-		navbar.style.opacity = 0;
-		navbar.style.transform = "translateY(50px)";
-
-		setTimeout(function () {
-			navbar.style.transition = "opacity 1s ease, transform 1s ease";
-			navbar.style.opacity = 1;
-			navbar.style.transform = "translateY(0)";
-		}, 0); // No delay, animation starts immediately
-	}
-});
-window.addEventListener("scroll", function () {
-	var navbar = document.querySelector(".pink-column");
-
-	if (isElementInViewport(navbar)) {
-		// Apply the entrance animation
-		navbar.style.opacity = 0;
-		navbar.style.transform = "translateY(50px)";
-
-		setTimeout(function () {
-			navbar.style.transition = "opacity 1s ease, transform 1s ease";
-			navbar.style.opacity = 1;
-			navbar.style.transform = "translateY(0)";
-		}, 0); // No delay, animation starts immediately
-	}
-});
-window.addEventListener("scroll", function () {
-	var navbar = document.querySelector(".blue-container");
-
-	if (isElementInViewport(navbar)) {
-		// Apply the entrance animation
-		navbar.style.opacity = 0;
-		navbar.style.transform = "translateY(50px)";
-
-		setTimeout(function () {
-			navbar.style.transition = "opacity 1s ease, transform 1s ease";
-			navbar.style.opacity = 1;
-			navbar.style.transform = "translateY(0)";
-		}, 0); // No delay, animation starts immediately
-	}
-});
 // window.addEventListener("scroll", function () {
-//     var navbar = document.querySelector(".h1-column");
+// 	var navbar = document.querySelector(".column");
 
-//     if (navbar) {
-//         if (isElementInViewport(navbar)) {
-//             // Apply the entrance animation
-//             navbar.style.opacity = 0;
-//             navbar.style.transform = "translateY(50px)";
+// 	if (isElementInViewport(navbar)) {
+// 		// Apply the entrance animation
+// 		navbar.style.opacity = 0;
+// 		navbar.style.transform = "translateY(40px)";
 
-//             setTimeout(function () {
-//                 navbar.style.transition = "opacity 1s ease, transform 1s ease";
-//                 navbar.style.opacity = 1;
-//                 navbar.style.transform = "translateY(0)";
-//             }, 0); // No delay, animation starts immediately
-//         }
-//     } else {
-//         console.error("Element with class .h1-column not found.");
-//     }
+// 		setTimeout(function () {
+// 			navbar.style.transition = "opacity 1s ease, transform 1s ease";
+// 			navbar.style.opacity = 1;
+// 			navbar.style.transform = "translateY(0)";
+// 		}, 0); // No delay, animation starts immediately
+// 	}
+// });
+// window.addEventListener("scroll", function () {
+// 	var navbar = document.querySelector(".row");
+
+// 	if (isElementInViewport(navbar)) {
+// 		// Apply the entrance animation
+// 		navbar.style.opacity = 0;
+// 		navbar.style.transform = "translateY(50px)";
+
+// 		setTimeout(function () {
+// 			navbar.style.transition = "opacity 1s ease, transform 1s ease";
+// 			navbar.style.opacity = 1;
+// 			navbar.style.transform = "translateY(0)";
+// 		}, 0); // No delay, animation starts immediately
+// 	}
+// });
+// window.addEventListener("scroll", function () {
+// 	var navbar = document.querySelector(".pink-column");
+
+// 	if (isElementInViewport(navbar)) {
+// 		// Apply the entrance animation
+// 		navbar.style.opacity = 0;
+// 		navbar.style.transform = "translateY(50px)";
+
+// 		setTimeout(function () {
+// 			navbar.style.transition = "opacity 1s ease, transform 1s ease";
+// 			navbar.style.opacity = 1;
+// 			navbar.style.transform = "translateY(0)";
+// 		}, 0); // No delay, animation starts immediately
+// 	}
+// });
+// window.addEventListener("scroll", function () {
+// 	var navbar = document.querySelector(".blue-container");
+
+// 	if (isElementInViewport(navbar)) {
+// 		// Apply the entrance animation
+// 		navbar.style.opacity = 0;
+// 		navbar.style.transform = "translateY(50px)";
+
+// 		setTimeout(function () {
+// 			navbar.style.transition = "opacity 1s ease, transform 1s ease";
+// 			navbar.style.opacity = 1;
+// 			navbar.style.transform = "translateY(0)";
+// 		}, 0); // No delay, animation starts immediately
+// 	}
 // });
 
+// window.addEventListener("scroll", function () {
+// 	var navbar = document.querySelector(".six-grid");
 
-window.addEventListener("scroll", function () {
-	var navbar = document.querySelector(".six-grid");
+// 	if (isElementInViewport(navbar)) {
+// 		// Apply the entrance animation
+// 		navbar.style.opacity = 0;
+// 		navbar.style.transform = "translateY(20px)";
 
-	if (isElementInViewport(navbar)) {
-		// Apply the entrance animation
-		navbar.style.opacity = 0;
-		navbar.style.transform = "translateY(20px)";
+// 		setTimeout(function () {
+// 			navbar.style.transition = "opacity 1s ease, transform 1s ease";
+// 			navbar.style.opacity = 1;
+// 			navbar.style.transform = "translateY(0)";
+// 		}, 0);
+// 	}
+// });
 
-		setTimeout(function () {
-			navbar.style.transition = "opacity 1s ease, transform 1s ease";
-			navbar.style.opacity = 1;
-			navbar.style.transform = "translateY(0)";
-		}, 0);
-	}
-});
+// window.addEventListener("scroll", function () {
+// 	var navbar = document.querySelector(".recent-works img");
 
-window.addEventListener("scroll", function () {
-	var navbar = document.querySelector(".recent-works img");
+// 	if (isElementInViewport(navbar)) {
+// 		// Apply the entrance animation
+// 		navbar.style.opacity = 1;
+// 		navbar.style.transform = "translateY(-50px)";
 
-	if (isElementInViewport(navbar)) {
-		// Apply the entrance animation
-		navbar.style.opacity = 1;
-		navbar.style.transform = "translateY(-50px)";
+// 		setTimeout(function () {
+// 			navbar.style.transition = "opacity 1s ease, transform 1s ease";
+// 			navbar.style.opacity = 1;
+// 			navbar.style.transform = "translateY(0)";
+// 		}, 0);
+// 	}
+// });
+// window.addEventListener("scroll", function () {
+// 	var navbar = document.querySelector(".recent-works h1");
 
-		setTimeout(function () {
-			navbar.style.transition = "opacity 1s ease, transform 1s ease";
-			navbar.style.opacity = 1;
-			navbar.style.transform = "translateY(0)";
-		}, 0);
-	}
-});
-window.addEventListener("scroll", function () {
-	var navbar = document.querySelector(".recent-works h1");
+// 	if (isElementInViewport(navbar)) {
+// 		// Apply the entrance animation
+// 		navbar.style.opacity = 1;
+// 		navbar.style.transform = "translateY(20px)";
 
-	if (isElementInViewport(navbar)) {
-		// Apply the entrance animation
-		navbar.style.opacity = 1;
-		navbar.style.transform = "translateY(20px)";
+// 		setTimeout(function () {
+// 			navbar.style.transition = "opacity 1s ease, transform 2s ease";
+// 			navbar.style.opacity = 1;
+// 			navbar.style.transform = "translateY(0)";
+// 		}, 100);
+// 	}
+// });
+// window.addEventListener("scroll", function () {
+// 	var navbar = document.querySelector(".projects-grid ");
 
-		setTimeout(function () {
-			navbar.style.transition = "opacity 1s ease, transform 2s ease";
-			navbar.style.opacity = 1;
-			navbar.style.transform = "translateY(0)";
-		}, 100);
-	}
-});
-window.addEventListener("scroll", function () {
-	var navbar = document.querySelector(".projects-grid ");
+// 	if (isElementInViewport(navbar)) {
+// 		// Apply the entrance animation
+// 		navbar.style.opacity = 1;
+// 		navbar.style.transform = "translateY(50px)";
 
-	if (isElementInViewport(navbar)) {
-		// Apply the entrance animation
-		navbar.style.opacity = 1;
-		navbar.style.transform = "translateY(50px)";
-
-		setTimeout(function () {
-			navbar.style.transition = "opacity 1s ease, transform 1s ease";
-			navbar.style.opacity = 1;
-			navbar.style.transform = "translateY(0)";
-		}, 50);
-	}
-});
-
-// window.addEventListener('scroll', function() {
-//   var navbar = document.querySelector('.recent-works-img-top-right');
-
-//   if (isElementInViewport(navbar)) {
-//     // Apply the entrance animation
-//     navbar.style.opacity = 1;
-//     navbar.style.transform = 'translateX(60px)';
-
-//     setTimeout(function() {
-//       navbar.style.transition = 'opacity 1s ease, transform 2s ease';
-//       navbar.style.opacity = 1;
-//       navbar.style.transform = 'translateX(0)';
-//     }, 100);
-//   }
+// 		setTimeout(function () {
+// 			navbar.style.transition = "opacity 1s ease, transform 1s ease";
+// 			navbar.style.opacity = 1;
+// 			navbar.style.transform = "translateY(0)";
+// 		}, 50);
+// 	}
 // });
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -329,77 +371,6 @@ document.addEventListener("DOMContentLoaded", function () {
 	});
 });
 
-// document
-// 	.getElementById("openModalButton")
-// 	.addEventListener("click", function () {
-// 		document.getElementById("modalOverlay").style.display = "flex";
-// 	});
-
-// Close the modal when the overlay is clicked
-// document
-// 	.getElementById("modalOverlay")
-// 	.addEventListener("click", function (event) {
-// 		if (event.target === this) {
-// 			this.style.display = "none";
-// 		}
-// 	});
-// document
-// 	.getElementById("openModalButton2")
-// 	.addEventListener("click", function () {
-// 		document.getElementById("modalOverlay").style.display = "flex";
-// 	});
-
-// Close the modal when the overlay is clicked
-// document
-// 	.getElementById("modalOverlay")
-// 	.addEventListener("click", function (event) {
-// 		if (event.target === this) {
-// 			this.style.display = "none";
-// 		}
-// 	});
-// document
-// 	.getElementById("openModalButton3")
-// 	.addEventListener("click", function () {
-// 		document.getElementById("modalOverlay").style.display = "flex";
-// 	});
-
-// Close the modal when the overlay is clicked
-// document
-// 	.getElementById("modalOverlay")
-// 	.addEventListener("click", function (event) {
-// 		if (event.target === this) {
-// 			this.style.display = "none";
-// 		}
-// 	});
-// document
-// 	.getElementById("openModalButton4")
-// 	.addEventListener("click", function () {
-// 		document.getElementById("modalOverlay").style.display = "flex";
-// 	});
-
-// Close the modal when the overlay is clicked
-// document
-// 	.getElementById("modalOverlay")
-// 	.addEventListener("click", function (event) {
-// 		if (event.target === this) {
-// 			this.style.display = "none";
-// 		}
-// 	});
-// document
-// 	.getElementById("openModalButton5")
-// 	.addEventListener("click", function () {
-// 		document.getElementById("modalOverlay").style.display = "flex";
-// 	});
-
-// Close the modal when the overlay is clicked
-// document
-// 	.getElementById("modalOverlay")
-// 	.addEventListener("click", function (event) {
-// 		if (event.target === this) {
-// 			this.style.display = "none";
-// 		}
-// 	});
-
 
 //************EDITED************EDITED*************EDITED***********//
 //************EDITED************EDITED*************EDITED***********//
@@ -412,12 +383,6 @@ menu.addEventListener("click", () => {
 	navBar.classList.toggle("navbar-show");
 });
 
-//Price Cancel Button
-// var priceCancelBtn = document.getElementById("price-pop-up-cancel"),
-// 	priceOverlay = document.getElementById("modalOverlay");
-// priceCancelBtn.addEventListener("click", () => {
-// 	priceOverlay.style.display = "none";
-// });
 
 //Close Menubar when Navbar links are clicked
 var menuLinks = document.querySelectorAll(".navbar-mobile li");
@@ -427,18 +392,7 @@ menuLinks.forEach((menuLink) => {
 	});
 });
 
-//Display CALL TO ACTION onclick *Mobile* Price Grid Buttons
-// document
-// 	.getElementById("openModalButton6")
-// 	.addEventListener("click", function () {
-// 		document.getElementById("modalOverlay").style.display = "flex";
-// 	});
 
-// document
-// 	.getElementById("openModalButton7")
-// 	.addEventListener("click", function () {
-// 		document.getElementById("modalOverlay").style.display = "flex";
-// 	});
 
 window.addEventListener("load", function () {
 	const cursorDot = document.querySelector(".cursor-dot");
@@ -463,25 +417,6 @@ window.addEventListener("load", function () {
 		// };
 	});
 });
-// // navigate to login page
-// document.getElementById("Login-btn").addEventListener("click", function () {
-// 	window.location.href = "login.html";
-// });
-
-// document.addEventListener('DOMContentLoaded', function () {
-// 	const lottiePlayers = document.querySelectorAll('.lottiePlayer');
-
-// 	function playLottiePlayers(index) {
-// 		setTimeout(() => {
-// 			lottiePlayers[index].classList.add('lottie-visible');
-// 			if (index < lottiePlayers.length - 1) {
-// 				playLottiePlayers(index + 1);
-// 			}
-// 		}, 1000);
-// 	}
-
-// 	playLottiePlayers(0);
-// });
 
 
 
@@ -529,7 +464,7 @@ function sendMail() {
 		message: message
 	};
 
-	emailjs.send("service_5usq08o", "template_vg4mp4o", params)
+	emailjs.send("service_46rv23h", "template_3s6151r", params)
 		.then(function (res) {
 			if (res.status === 200) {
 				// Clear the input fields
@@ -539,7 +474,7 @@ function sendMail() {
 				Swal.fire({
 					icon: 'success',
 					title: 'Success!',
-					text: 'Your message has been sent successfully.',
+					text: 'Thank you for contacting. We will get back to you soon',
 				});
 			} else {
 				Swal.fire({
@@ -568,3 +503,80 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+
+document.addEventListener("DOMContentLoaded", function () {
+	fetch('jsons/blogs.json')
+		.then(response => response.json())
+		.then(data => {
+			data.forEach(blog => {
+				const card = document.getElementById(`blog-${blog.id}`);
+				const titleElement = card.querySelector('.card__title');
+				const contentElement = card.querySelector('.card__content');
+				const imageElement = card.querySelector('.card__image img');
+
+				titleElement.textContent = blog.title;
+				contentElement.textContent = blog.sections[0].content;
+				imageElement.src = blog.image;
+				imageElement.alt = blog.title;
+
+				// Check if there is a link field in any section
+				blog.sections.forEach(section => {
+					if (section.link) {
+						const link = document.createElement('a');
+						link.href = section.link;
+						link.textContent = 'Click to visit';
+						link.style.textDecoration = 'none';
+						link.style.color = 'blue';
+						const linkContainer = document.createElement('div');
+						linkContainer.appendChild(link);
+						contentElement.appendChild(linkContainer);
+					}
+				});
+
+				titleElement.addEventListener('click', function (event) {
+					event.preventDefault();
+					window.location.href = `blog.html?id=${blog.id}`;
+				});
+			});
+		})
+		.catch(error => console.error('Error fetching blog data:', error));
+});
+
+
+
+
+document.addEventListener('DOMContentLoaded', function () {
+	var footerDiv = document.querySelector('.footer-div');
+	var footerH1 = document.getElementById('footer-h1');
+	var footerH2 = document.getElementById('footer-h2');
+
+	function changeBackgroundColorToWhite() {
+		gsap.to(footerDiv, { backgroundColor: 'white', ease: "power2.inOut" });
+		gsap.to(footerH1, { color: 'black', ease: "power2.inOut" });
+		gsap.to(footerH2, { color: 'black', ease: "power2.inOut" });
+	}
+
+	function changeBackgroundColorToBlack() {
+		gsap.to(footerDiv, { backgroundColor: 'black', ease: "power2.inOut" });
+		gsap.to(footerH1, { color: 'white', ease: "power2.inOut" });
+		gsap.to(footerH2, { color: 'white', ease: "power2.inOut" });
+	}
+
+	ScrollTrigger.create({
+		trigger: footerDiv,
+		start: "top center",
+		end: "bottom center",
+		onEnter: changeBackgroundColorToWhite,
+		onLeaveBack: changeBackgroundColorToBlack,
+	});
+});
+
+const root = document.documentElement;
+const marqueeElementsDisplayed = getComputedStyle(root).getPropertyValue("--marquee-elements-displayed");
+const marqueeContent = document.querySelector("ul.marquee-content");
+
+root.style.setProperty("--marquee-elements", marqueeContent.children.length);
+
+for (let i = 0; i < marqueeElementsDisplayed; i++) {
+	marqueeContent.appendChild(marqueeContent.children[i].cloneNode(true));
+}
